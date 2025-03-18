@@ -13,7 +13,8 @@ export class MainPage extends BasePage {
   private readonly authModulLocator: Locator;
   private readonly switchToRegModalLocator: Locator;
   private readonly menuButtonLocator: Locator;
-  private readonly openMenuAreaLocator;
+  private readonly openMenuAriaLocator: Locator;
+  private readonly changeThemeBtnLocator: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -39,9 +40,18 @@ export class MainPage extends BasePage {
       .locator('div[role="form"]')
       .getByRole('button', { name: 'Зарегистрироваться' });
     this.menuButtonLocator = this.page.getByRole('button', { name: 'Открыть меню навигации' });
-    this.openMenuAreaLocator = this.page.locator('.menu-content-module__menuOpen');
+    this.openMenuAriaLocator = this.page.locator('.menu-content-module__menuOpen');
+    this.changeThemeBtnLocator = this.page.getByRole('button', {
+      name: 'Переключить на светлую тему',
+    });
+  }
+  async changeThemeToWhite() {
+    await this.changeThemeBtnLocator.click();
   }
 
+  async openFullMenu() {
+    await this.menuButtonLocator.click();
+  }
   async open() {
     await this.page.goto('https://rutube.ru/');
     await this.page.getByRole('button').filter({ hasText: /^$/ }).click();
@@ -88,5 +98,13 @@ export class MainPage extends BasePage {
     await expect(this.authModulLocator).toMatchAriaSnapshot({
       name: 'regModal.yml',
     });
+  }
+  async fullMenuHasCorrectAriaSnapshot() {
+    await expect(this.openMenuAriaLocator).toMatchAriaSnapshot({
+      name: 'fullMenuSnapshot.yml',
+    });
+  }
+  async checkThemeAttributeValue(attributeValue: 'dark2021' | 'white2022') {
+    await expect(this.page.locator('html')).toHaveAttribute('data-pen-theme', attributeValue);
   }
 }

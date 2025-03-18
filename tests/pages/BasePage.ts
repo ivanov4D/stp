@@ -6,5 +6,6 @@ export class BasePage {
   }
   async closeCoockiesTab() {
     await this.page.locator('.cookie-consent__button').click();
+    // await this.page.locator('button[type="button"]', { hasText: 'Ok' }).click();
   }
 }
