@@ -12,6 +12,8 @@ export class MainPage extends BasePage {
   private readonly headerNotificationsPopupLocator: Locator;
   private readonly authModulLocator: Locator;
   private readonly switchToRegModalLocator: Locator;
+  private readonly menuButtonLocator: Locator;
+  private readonly openMenuAreaLocator;
 
   constructor(page: Page) {
     super(page);
@@ -36,6 +38,8 @@ export class MainPage extends BasePage {
       .contentFrame()
       .locator('div[role="form"]')
       .getByRole('button', { name: 'Зарегистрироваться' });
+    this.menuButtonLocator = this.page.getByRole('button', { name: 'Открыть меню навигации' });
+    this.openMenuAreaLocator = this.page.locator('.menu-content-module__menuOpen');
   }
 
   async open() {
