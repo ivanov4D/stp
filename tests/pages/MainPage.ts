@@ -54,7 +54,7 @@ export class MainPage extends BasePage {
   }
   async open() {
     await this.page.goto('https://rutube.ru/');
-    await this.page.getByRole('button').filter({ hasText: /^$/ }).click();
+    // await this.page.getByRole('button').filter({ hasText: /^$/ }).click();
   }
   async headerHasCorrectAriaSnapshot() {
     await expect(this.headerLocator).toMatchAriaSnapshot({ name: 'headerAriaSnapShot.yml' });
