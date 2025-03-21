@@ -37,7 +37,7 @@ export default defineConfig({
     {
       name: 'chromium auth',
       use: { ...devices['Desktop Chrome'], storageState: 'tests/playwright/.auth/user.json' },
-      dependencies: ['auth'],
+      // dependencies: ['auth'],
       testDir: 'tests/specs/auth',
       snapshotPathTemplate: 'tests/snapshots/auth/{testFilePath}/{arg}{ext}',
     },

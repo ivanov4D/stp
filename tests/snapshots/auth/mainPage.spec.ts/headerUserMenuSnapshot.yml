@@ -1,0 +1,15 @@
+- img "Иконка канала channel59387445"
+- paragraph:
+  - link "channel59387445"
+  - link:
+    - img
+- paragraph: da****@gmail.com
+- list:
+  - listitem:
+    - link "Профиль"
+  - listitem:
+    - link "Мой канал"
+  - listitem:
+    - link "Студия RUTUBE"
+- button "Выйти":
+  - img
